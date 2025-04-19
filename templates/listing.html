@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Antique Items Gallery</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f9f6f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3e2723;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .item-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .item-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .item-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .item-info {
+      padding: 15px;
+    }
+
+    .item-info h3 {
+      margin: 0 0 10px;
+      font-size: 1.3em;
+      color: #5d4037;
+    }
+
+    .item-info p {
+      font-size: 0.95em;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .item-info .price {
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Vintage & Antique Collection</h1>
+  <p>Discover timeless pieces from past eras</p>
+</header>
+
+<div class="gallery-container">
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Victorian+Vase" alt="Victorian Vase">
+    <div class="item-info">
+      <h3>Victorian Porcelain Vase</h3>
+      <p>Hand-painted floral porcelain vase, late 1800s.</p>
+      <div class="price">$120</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Mantel+Clock" alt="Mantel Clock">
+    <div class="item-info">
+      <h3>1920s Mantel Clock</h3>
+      <p>Art Deco oak clock in perfect working condition.</p>
+      <div class="price">$250</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Antique+Camera" alt="Antique Camera">
+    <div class="item-info">
+      <h3>Kodak Folding Camera</h3>
+      <p>Classic 1930s camera, a gem for collectors.</p>
+      <div class="price">$180</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Old+Radio" alt="Vintage Radio">
+    <div class="item-info">
+      <h3>Vintage Tube Radio</h3>
+      <p>Working 1940s radio with warm, rich sound.</p>
+      <div class="price">$220</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Typewriter" alt="Typewriter">
+    <div class="item-info">
+      <h3>Remington Typewriter</h3>
+      <p>Classic 1927 manual typewriter with case.</p>
+      <div class="price">$145</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Pocket+Watch" alt="Pocket Watch">
+    <div class="item-info">
+      <h3>Gold Pocket Watch</h3>
+      <p>19th-century Swiss timepiece in gold casing.</p>
+      <div class="price">$390</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Gramophone" alt="Gramophone">
+    <div class="item-info">
+      <h3>1925 Gramophone</h3>
+      <p>Vintage record player with brass horn.</p>
+      <div class="price">$310</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Lantern" alt="Oil Lantern">
+    <div class="item-info">
+      <h3>Antique Oil Lantern</h3>
+      <p>Rustic, functional kerosene lantern, early 1900s.</p>
+      <div class="price">$95</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Globe" alt="Old Globe">
+    <div class="item-info">
+      <h3>World Globe - 1910</h3>
+      <p>Handcrafted terrestrial globe with wooden stand.</p>
+      <div class="price">$175</div>
+    </div>
+  </div>
+
+  <div class="item-card">
+    <img src="https://via.placeholder.com/300x180?text=Chess+Set" alt="Antique Chess Set">
+    <div class="item-info">
+      <h3>Ivory Chess Set</h3>
+      <p>Carved 19th-century chess set, complete and original.</p>
+      <div class="price">$470</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
+
