@@ -1,11 +1,162 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Home - AntiqueHub{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collectibells</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antique Items</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdf6f0;
+      color: #3e3e3e;
+    }
+    header {
+      background-color: #8b5e3c;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    nav {
+      background-color: #70452a;
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+    }
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+    .item {
+      background-color: #fffaf4;
+      border: 1px solid #d6bfa7;
+      border-radius: 8px;
+      padding: 15px;
+      width: 250px;
+      text-align: center;
+    }
+    .item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    form {
+      background-color: #f4e7dc;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      background-color: #8b5e3c;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #8b5e3c;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    
+
+  <header>
+    <h1>Antique-Items</h1>
+    <p>Discover the charm of the past in every piece</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#featured">Featured Items</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Unique & Authentic Antique Pieces</h2>
+    <p>Curated with love and history – for collectors, designers, and admirers of the past.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Antique items brings you a handpicked collection of valuable items from around the world. Whether you're a passionate collector or simply looking for a unique decor piece, our collection is sure to transport you through time.</p>
+  </section>
+
+  <section id="featured">
+    <h2>Featured Items</h2>
+    <div class="items">
+      <div class="item">
+        <img src="https://via.placeholder.com/250x200?text=Vintage+Clock" alt="Vintage Clock">
+        <h3>Vintage Clock</h3>
+        <p>Elegant wooden clock from the 1920s.</p>
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/250x200?text=Porcelain+Vase" alt="Porcelain Vase">
+        <h3>Porcelain Vase</h3>
+        <p>Classic 19th-century Chinese vase with floral motifs.</p>
+      </div>
+      <div class="item">
+        <img src="https://via.placeholder.com/250x200?text=Retro+Radio" alt="Retro Radio">
+        <h3>Retro Radio</h3>
+        <p>Iconic mid-century AM/FM radio in mint condition.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Antique Items. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
+
+{% endblock %}

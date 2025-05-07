@@ -15,14 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='home'),    
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login'), 
-    path('signup/', TemplateView.as_view(template_name='signup.html'), name='signup'),
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', include('authentication.urls'), name='auth'),
     path('landing/', TemplateView.as_view(template_name='landing.html'), name='landing'), 
-    path('listing/', TemplateView.as_view(template_name='listing.html'), name='listing'),  
+    path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    path('browse/', TemplateView.as_view(template_name='browse.html'), name='browse'),
+    path('layout/', TemplateView.as_view(template_name='layout.html'), name='layout'),
+    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),      
+    path('productDetails/', TemplateView.as_view(template_name='productDetails.html'), name='productDetails'),
+    path('footer/', TemplateView.as_view(template_name='footer.html'), name='footer')
 ]
