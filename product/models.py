@@ -1,5 +1,16 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -11,6 +22,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     origin = models.CharField(max_length=100, blank=True, null=True)
     age = models.PositiveIntegerField(help_text="Age of the antique item in years", blank=True, null=True)
+    category = models.CharField(max_length=100, blank=True, null=True)  # Changed to CharField
 
     def __str__(self):
         return self.name

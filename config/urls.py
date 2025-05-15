@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('', include('authentication.urls'), name='auth'),
+    path('', include('product.urls'), name='auth'),
     path('landing/', TemplateView.as_view(template_name='landing.html'), name='landing'), 
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('browse/', TemplateView.as_view(template_name='browse.html'), name='browse'),
