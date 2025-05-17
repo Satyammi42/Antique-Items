@@ -1,7 +1,9 @@
-from django.urls import path, include
-from django.views.generic import TemplateView
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login'), 
-    path('signup/', TemplateView.as_view(template_name='signup.html'), name='signup'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    # Add other authentication-related URLs here
 ]

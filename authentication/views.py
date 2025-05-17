@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from .forms import CustomUserCreationForm, CustomAuthenticationForm  # Update this import
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -14,13 +14,13 @@ def register(request):
         else:
             messages.error(request, 'Registration failed. Please correct the errors.')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     
-    return render(request, 'authentication/register.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})  # Update template path
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)  # Use custom form
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -32,6 +32,11 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid username or password.')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()  # Use custom form
     
-    return render(request, 'authentication/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect('home')
