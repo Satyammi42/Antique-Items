@@ -1,11 +1,127 @@
 {% extends 'layout.html' %}
 
-
-
 {% block content %}
-    <h1 class="text-center text-4xl font-bold my-6"> browse page </h1>
-   <h1>
-       {{name}}
-   </h1>
-{% endblock content %}
-    
+<div class="container mx-auto px-4 py-8">
+    <!-- Heading Section -->
+    <div class="mb-12">
+        <h1 class="text-4xl font-bold text-center mb-4">Browse Antiques</h1>
+        <p class="text-gray-600 text-center">Discover our unique collection of antique items</p>
+    </div>
+
+    <!-- Filter Form -->
+    <form method="get" class="mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div class="md:col-span-3">
+                <div class="relative">
+                    <input type="text" name="search" 
+                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                           placeholder="Search products..." 
+                           value="{{ search_query }}">
+                </div>
+            </div>
+            <div class="md:col-span-3">
+                <select name="category" 
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" 
+                            {% if category.id|stringformat:"i" == category_filter %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="md:col-span-2">
+                <input type="number" name="min_price" 
+                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                       placeholder="Min Price" 
+                       value="{{ min_price }}">
+            </div>
+            <div class="md:col-span-2">
+                <input type="number" name="max_price" 
+                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                       placeholder="Max Price" 
+                       value="{{ max_price }}">
+            </div>
+            <div class="md:col-span-2">
+                <button type="submit" 
+                        class="w-full h-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-200">
+                    <i class="fas fa-search mr-2"></i>Filter
+                </button>
+            </div>
+        </div>
+        <div class="mt-4 text-right">
+            <a href="{% url 'product_list' %}" 
+               class="text-blue-600 hover:text-blue-800 transition duration-200">
+                Reset Filters
+            </a>
+        </div>
+    </form>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for product in products %}
+        <div class="transform hover:-translate-y-1 transition duration-200">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                {% if product.image %}
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="{{ product.image.url }}" 
+                         alt="{{ product.name }}" 
+                         class="object-cover w-full h-48">
+                </div>
+                {% endif %}
+                <div class="p-4">
+                    <h5 class="text-xl font-semibold mb-2 truncate">{{ product.name }}</h5>
+                    <p class="text-2xl text-blue-600 font-bold mb-4">${{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" 
+                       class="block w-full text-center px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition duration-200">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600 text-lg">No products found matching your criteria.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if products.has_other_pages %}
+    <div class="mt-12">
+        <nav class="flex justify-center">
+            <ul class="flex space-x-2">
+                {% if products.has_previous %}
+                <li>
+                    <a href="?page={{ products.previous_page_number }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}" 
+                       class="px-3 py-2 rounded-lg border hover:bg-gray-100 transition duration-200">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in products.paginator.page_range %}
+                <li>
+                    <a href="?page={{ num }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}" 
+                       class="px-3 py-2 rounded-lg border {% if products.number == num %}bg-blue-600 text-white{% else %}hover:bg-gray-100{% endif %} transition duration-200">
+                        {{ num }}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% if products.has_next %}
+                <li>
+                    <a href="?page={{ products.next_page_number }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}" 
+                       class="px-3 py-2 rounded-lg border hover:bg-gray-100 transition duration-200">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
