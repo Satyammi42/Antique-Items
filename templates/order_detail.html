@@ -1,68 +1,135 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold text-gray-900">Order #{{ order.id }}</h1>
-                <span class="px-3 py-1 rounded-full text-sm font-semibold
-                    {% if order.status == 'completed' %}bg-green-100 text-green-800
-                    {% elif order.status == 'cancelled' %}bg-red-100 text-red-800
-                    {% else %}bg-yellow-100 text-yellow-800{% endif %}">
-                    {{ order.status|title }}
-                </span>
-            </div>
-
-            <div class="border-t border-gray-200 py-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500">Order Date</h3>
-                        <p class="mt-1">{{ order.order_date|date:"F j, Y" }}</p>
+<div class="container mx-auto px-4 py-8 animate-fade-in">
+    <div class="mb-6 flex items-center">
+        <a href="{% url 'order_history' %}" 
+           class="inline-flex items-center text-[#70452a] hover:text-[#8b5e3c] transition duration-200">
+            <svg class="mr-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Back to Orders
+        </a>
+        <h1 class="text-3xl font-bold text-[#3e3e3e] ml-4 animate-slide-up">Order #{{ order.id }}</h1>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Order Info -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in-up">
+                <div class="px-6 py-4 bg-[#f4e7dc] border-b border-[#8b5e3c]/20">
+                    <h2 class="text-xl font-semibold text-[#70452a]">Order Details</h2>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex flex-wrap mb-6 pb-6 border-b border-[#f4e7dc]">
+                        <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                            <h3 class="text-sm font-medium text-[#8b5e3c]">ORDER DATE</h3>
+                            <p class="text-[#3e3e3e] mt-1">{{ order.order_date|date:"F j, Y, g:i a" }}</p>
+                        </div>
+                        <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                            <h3 class="text-sm font-medium text-[#8b5e3c]">STATUS</h3>
+                            <p class="text-[#3e3e3e] mt-1">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </p>
+                        </div>
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-sm font-medium text-[#8b5e3c]">TOTAL</h3>
+                            <p class="text-[#3e3e3e] font-bold text-xl mt-1">${{ order.total_price }}</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500">Total Price</h3>
-                        <p class="mt-1">${{ order.total_price }}</p>
+                    
+                    <!-- Product Information -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium text-[#70452a] mb-4">Product Information</h3>
+                        
+                        <div class="flex border border-[#f4e7dc] rounded-lg p-4">
+                            <div class="w-20 h-20 flex-shrink-0">
+                                {% if order.product.image %}
+                                    <img src="{{ order.product.image.url }}" 
+                                         alt="{{ order.product.name }}" 
+                                         class="w-full h-full object-cover rounded">
+                                {% endif %}
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="text-[#3e3e3e] font-medium">{{ order.product.name }}</h4>
+                                <p class="text-sm text-[#70452a] mt-1">Category: {{ order.product.category.name }}</p>
+                                <div class="flex justify-between items-center mt-2">
+                                    <span class="text-sm text-[#70452a]">Quantity: 1</span>
+                                    <span class="font-semibold text-[#8b5e3c]">${{ order.product.price }}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="border-t border-gray-200 py-4">
-                <h3 class="text-sm font-medium text-gray-500 mb-2">Product Details</h3>
-                <div class="flex items-center">
-                    {% if order.product.image %}
-                        <img src="{{ order.product.image.url }}" 
-                             alt="{{ order.product.name }}" 
-                             class="w-20 h-20 object-cover rounded">
-                    {% endif %}
-                    <div class="ml-4">
-                        <h4 class="font-medium">{{ order.product.name }}</h4>
-                        <p class="text-gray-500">${{ order.product.price }}</p>
+        </div>
+        
+        <!-- Customer Info -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="px-6 py-4 bg-[#f4e7dc] border-b border-[#8b5e3c]/20">
+                    <h2 class="text-xl font-semibold text-[#70452a]">Customer Information</h2>
+                </div>
+                
+                <div class="p-6">
+                    <div class="mb-4">
+                        <h3 class="text-sm font-medium text-[#8b5e3c] mb-1">NAME</h3>
+                        <p class="text-[#3e3e3e]">{{ order.customer_name }}</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="text-sm font-medium text-[#8b5e3c] mb-1">EMAIL</h3>
+                        <p class="text-[#3e3e3e]">{{ order.customer_email }}</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-medium text-[#8b5e3c] mb-1">SHIPPING ADDRESS</h3>
+                        <p class="text-[#3e3e3e] whitespace-pre-line">{{ order.shipping_address }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="border-t border-gray-200 py-4">
-                <h3 class="text-sm font-medium text-gray-500 mb-2">Shipping Details</h3>
-                <p class="mb-1">{{ order.customer_name }}</p>
-                <p class="mb-1">{{ order.customer_email }}</p>
-                <p class="whitespace-pre-line">{{ order.shipping_address }}</p>
-            </div>
-
-            <div class="mt-6">
-                <a href="{% url 'order_history' %}" 
-                   class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    Back to Orders
+            
+            <!-- Action Buttons -->
+            <div class="mt-6 flex gap-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <a href="mailto:{{ order.customer_email }}" 
+                   class="flex-1 inline-flex justify-center items-center py-2.5 px-4 border border-[#8b5e3c] text-[#8b5e3c] hover:bg-[#f4e7dc] rounded-lg transition duration-200 text-sm">
+                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    Contact
                 </a>
+                <button onclick="window.print()" 
+                        class="flex-1 inline-flex justify-center items-center py-2.5 px-4 bg-[#8b5e3c] text-white hover:bg-[#70452a] rounded-lg transition duration-200 text-sm">
+                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
+                    </svg>
+                    Print
+                </button>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
-<!-- Add this to your navigation menu -->
-<a href="{% url 'order_history' %}" class="text-gray-600 hover:text-gray-900">
-    <i class="fas fa-history mr-2"></i>
-    Order History
-</a>
+{% block extra_js %}
+<style>
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-fade-in { animation: fadeIn 0.8s ease-in-out; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+.animate-slide-up { animation: slideUp 0.7s ease-out; }
+
+@media print {
+    header, footer, .no-print { display: none !important; }
+    body { background-color: white; }
+    .container { max-width: 100%; padding: 0; }
+    .shadow-md { box-shadow: none !important; }
+}
+</style>
+{% endblock %}

@@ -1,57 +1,69 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-4 py-8 animate-fade-in">
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
+        <h1 class="text-3xl font-bold text-[#3e3e3e] mb-8 animate-slide-up">Checkout</h1>
         
         <!-- Product Summary -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8 animate-fade-in-up">
             <div class="flex items-center">
                 {% if product.image %}
                     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-20 h-20 object-cover rounded">
                 {% endif %}
                 <div class="ml-4">
-                    <h2 class="text-xl font-semibold text-gray-900">{{ product.name }}</h2>
-                    <p class="text-2xl font-bold text-blue-600">${{ product.price }}</p>
+                    <h2 class="text-xl font-semibold text-[#3e3e3e]">{{ product.name }}</h2>
+                    <p class="text-2xl font-bold text-[#8b5e3c] animate-slide-up">${{ product.price }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Checkout Form -->
-        <form method="post" class="space-y-6">
+        <form method="post" class="space-y-6 animate-fade-in-up-delay">
             {% csrf_token %}
             <div class="bg-white rounded-lg shadow-md p-6 space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <label class="block text-sm font-medium text-[#70452a] mb-1">Full Name</label>
                     <input type="text" name="name" required 
-                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                           class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <label class="block text-sm font-medium text-[#70452a] mb-1">Email</label>
                     <input type="email" name="email" required 
-                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                           class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Shipping Address</label>
+                    <label class="block text-sm font-medium text-[#70452a] mb-1">Shipping Address</label>
                     <textarea name="address" required 
-                              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50"
                               rows="3"></textarea>
                 </div>
             </div>
 
             <div class="flex justify-between items-center">
                 <a href="{% url 'product_detail' product.id %}" 
-                   class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50">
+                   class="inline-flex items-center px-6 py-3 border border-[#8b5e3c]/30 rounded-lg text-[#70452a] bg-white hover:bg-[#f4e7dc] transition duration-200 animate-fade-in-up">
                     <i class="fas fa-arrow-left mr-2"></i>
                     Back
                 </a>
                 <button type="submit" 
-                        class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        class="px-8 py-3 bg-[#8b5e3c] text-white rounded-lg hover:bg-[#70452a] focus:outline-none focus:ring-2 focus:ring-[#8b5e3c] focus:ring-offset-2 animate-fade-in-up-delay">
                     Complete Purchase
                 </button>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fadeIn 0.8s ease-in-out; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+.animate-fade-in-up-delay { animation: fadeInUp 0.5s ease-out 0.2s both; }
+.animate-slide-up { animation: slideUp 0.7s ease-out; }
+</style>
 {% endblock %}

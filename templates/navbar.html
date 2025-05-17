@@ -1,30 +1,36 @@
-<header class="text-gray-600 body-font">
+{% load static %}
+<header class="bg-[#fdf6f0] shadow-sm">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Antique-Items</span>
+      <a href="{% url 'home' %}" class="flex title-font font-medium items-center text-[#3e3e3e] mb-4 md:mb-0">
+        <img class="size-10" src="{% static 'images/logo.png' %}" alt="Collecti-Bells Logo">
+        <span class="ml-3 text-xl font-semibold">Collecti-Bells</span>
       </a>
-      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-gray-900">First Link</a>
-        <a class="mr-5 hover:text-gray-900">Second Link</a>
-        <a class="mr-5 hover:text-gray-900">Third Link</a>
-        <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+      
+      <nav class="md:mr-auto md:ml-6 md:py-1 md:pl-6 md:border-l md:border-[#8b5e3c]/30 flex flex-wrap items-center text-base justify-center">
+        <a href="{% url 'browse' %}" class="mr-5 text-[#70452a] hover:text-[#8b5e3c] transition duration-200">Browse</a>
+        <a href="#" class="mr-5 text-[#70452a] hover:text-[#8b5e3c] transition duration-200">Categories</a>
+        <a href="#" class="mr-5 text-[#70452a] hover:text-[#8b5e3c] transition duration-200">Featured</a>
+        <a href="#" class="mr-5 text-[#70452a] hover:text-[#8b5e3c] transition duration-200">About</a>
       </nav>
       
       {% if user.is_authenticated %}
-        <span class="mr-4 text-gray-700">Welcome, {{ user.username }}!</span>
-        <button class="inline-flex items-center bg-red-500 text-white border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0">
-          <a href="{% url 'logout' %}/">Logout</a>
-        </button>
+        <span class="mr-4 text-[#3e3e3e]">Welcome, {{ user.username }}!</span>
+        <a href="{% url 'logout' %}" 
+           class="inline-flex items-center bg-white border border-[#8b5e3c] text-[#8b5e3c] py-1 px-4 focus:outline-none hover:bg-[#8b5e3c] hover:text-white rounded-lg transition duration-300 text-base">
+          Logout
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V7.414l-4-4H3zm7 2a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1zm-3 6a1 1 0 110 2H5a1 1 0 110-2h2zm9-3a1 1 0 10-2 0v8a1 1 0 102 0V8z" clip-rule="evenodd" />
+          </svg>
+        </a>
       {% else %}
-        <button class="inline-flex items-center bg-gray-400 border-0 py-1 px-3 mr-5 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-          <a href="{% url 'register' %}/">Sign Up</a>
-        </button>
-        <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-          <a href="{% url 'login' %}/">Login</a>
-        </button>
+        <a href="{% url 'register' %}" 
+           class="inline-flex items-center bg-white text-[#8b5e3c] border border-[#8b5e3c] py-1.5 px-4 mr-4 focus:outline-none hover:bg-[#f4e7dc] rounded-lg transition duration-300 text-base">
+          Sign Up
+        </a>
+        <a href="{% url 'login' %}" 
+           class="inline-flex items-center bg-[#8b5e3c] text-white py-1.5 px-4 focus:outline-none hover:bg-[#70452a] rounded-lg transition duration-300 text-base shadow-sm">
+          Login
+        </a>
       {% endif %}
     </div>
-  </header>
+</header>

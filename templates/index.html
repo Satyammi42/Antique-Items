@@ -4,276 +4,198 @@
 {% block title %}Home - Collecti-Bells{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collecti-Bells</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script>
-</head>
-
-<body class="font-['Inter'] bg-[#fdf6f0]">
-    <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-[600px] flex items-center"
-        style="background-image: url('https://images.unsplash.com/photo-1679244333535-cb805b7b8fb7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center text-white">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6">Discover, Verify, and Trade Rare Collectibles with
-                    Confidence</h1>
-                <p class="text-xl md:text-2xl mb-8">Your trusted marketplace for authentic collectibles and meaningful
-                    connections</p>
-                <div class="space-x-4">
-                    <a href="/browse"
-                        class="bg-[#8b5e3c] text-white px-8 py-3 rounded-lg hover:bg-[#70452a] transition font-semibold">Browse
-                        Marketplace</a>
-                    <a href="/signup"
-                        class="bg-white text-[#8b5e3c] px-8 py-3 rounded-lg hover:bg-gray-100 transition font-semibold">Start
-                        Your Collection</a>
-                </div>
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-[600px] flex items-center animate-fade-in" style="background-image: url('https://images.unsplash.com/photo-1679244333535-cb805b7b8fb7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center text-white">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-slide-up">Discover, Verify, and Trade Rare Collectibles with Confidence</h1>
+            <p class="text-xl md:text-2xl mb-8 animate-slide-up-delay">Your trusted marketplace for authentic collectibles and meaningful connections</p>
+            <div class="space-x-4 animate-fade-in-up">
+                <a href="{% url 'browse' %}" class="bg-[#8b5e3c] text-white px-8 py-3 rounded-lg hover:bg-[#70452a] transition font-semibold inline-block">Marketplace</a>
+                <a href="{% url 'register' %}" class="bg-white text-[#8b5e3c] px-8 py-3 rounded-lg hover:bg-[#f4e7dc] transition font-semibold inline-block">Sign Up</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-[#3e3e3e]">Why Choose Collecti-Bells</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center p-6">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
-                        <i data-feather="shield" class="w-8 h-8 text-[#8b5e3c]"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Expert Verification</h3>
-                    <p class="text-gray-600">Every item undergoes rigorous authentication by industry experts</p>
+<!-- Features Section -->
+<section class="py-20 bg-white animate-fade-in-up">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[#3e3e3e] animate-slide-up">Why Choose Collecti-Bells</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center p-6 animate-fade-in-up-delay">
+                <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
+                    <i class="fas fa-certificate text-2xl text-[#8b5e3c]"></i>
                 </div>
-                <div class="text-center p-6">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
-                        <i data-feather="star" class="w-8 h-8 text-[#8b5e3c]"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Trusted Reviews</h3>
-                    <p class="text-gray-600">Transparent ratings and reviews from verified collectors</p>
+                <h3 class="text-xl font-semibold mb-3">Expert Verification</h3>
+                <p class="text-gray-600">Every item undergoes rigorous authentication by industry experts</p>
+            </div>
+            <div class="text-center p-6 animate-fade-in-up-delay">
+                <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
+                    <i class="fas fa-star text-2xl text-[#8b5e3c]"></i>
                 </div>
-                <div class="text-center p-6">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
-                        <i data-feather="lock" class="w-8 h-8 text-[#8b5e3c]"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Secure Trading</h3>
-                    <p class="text-gray-600">Protected transactions and secure marketplace environment</p>
+                <h3 class="text-xl font-semibold mb-3">Trusted Reviews</h3>
+                <p class="text-gray-600">Transparent ratings and reviews from verified collectors</p>
+            </div>
+            <div class="text-center p-6 animate-fade-in-up-delay">
+                <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
+                    <i class="fas fa-lock text-2xl text-[#8b5e3c]"></i>
                 </div>
-                <div class="text-center p-6">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
-                        <i data-feather="layout" class="w-8 h-8 text-[#8b5e3c]"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Smart Management</h3>
-                    <p class="text-gray-600">Advanced tools to manage and showcase your collection</p>
+                <h3 class="text-xl font-semibold mb-3">Secure Trading</h3>
+                <p class="text-gray-600">Protected transactions and secure marketplace environment</p>
+            </div>
+            <div class="text-center p-6 animate-fade-in-up-delay">
+                <div class="w-16 h-16 mx-auto mb-4 bg-[#f4e7dc] rounded-full flex items-center justify-center">
+                    <i class="fas fa-cubes text-2xl text-[#8b5e3c]"></i>
                 </div>
+                <h3 class="text-xl font-semibold mb-3">Smart Management</h3>
+                <p class="text-gray-600">Advanced tools to manage and showcase your collection</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Problem & Solution Section -->
-    <section class="py-20 bg-[#f4e7dc]">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-bold mb-8">Challenges Collectors Face</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i data-feather="x-circle" class="w-6 h-6 text-red-500 mr-3 mt-1"></i>
-                            <span>Authenticity concerns and counterfeit items</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="x-circle" class="w-6 h-6 text-red-500 mr-3 mt-1"></i>
-                            <span>Unreliable pricing and market volatility</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="x-circle" class="w-6 h-6 text-red-500 mr-3 mt-1"></i>
-                            <span>Lack of secure trading platforms</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-bold mb-8">Our Solutions</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-6 h-6 text-green-500 mr-3 mt-1"></i>
-                            <span>Expert verification and authentication process</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-6 h-6 text-green-500 mr-3 mt-1"></i>
-                            <span>Market analysis and fair pricing guides</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-6 h-6 text-green-500 mr-3 mt-1"></i>
-                            <span>Escrow service and buyer protection</span>
-                        </li>
-                    </ul>
-                </div>
+<!-- Problem & Solution Section -->
+<section class="py-20 bg-[#f4e7dc] animate-fade-in-up">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-bold mb-8 text-[#3e3e3e]">Challenges Collectors Face</h2>
+                <ul class="space-y-4 text-[#70452a]">
+                    <li>• Risk of counterfeits and misrepresented items</li>
+                    <li>• Lack of trust in online transactions</li>
+                    <li>• Difficulty in finding rare collectibles</li>
+                    <li>• Managing and showcasing collections</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold mb-8 text-[#3e3e3e]">Our Solutions</h2>
+                <ul class="space-y-4 text-[#8b5e3c]">
+                    <li>• Expert authentication for every item</li>
+                    <li>• Secure payment and trading platform</li>
+                    <li>• Curated marketplace for rare finds</li>
+                    <li>• Smart collection management tools</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- How It Works Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
-            <div class="flex flex-col md:flex-row justify-between items-center max-w-4xl mx-auto">
-                <div class="step text-center mb-8 md:mb-0">
-                    <div
-                        class="w-20 h-20 rounded-full bg-[#8b5e3c] text-white flex items-center justify-center mx-auto mb-4">
-                        1</div>
-                    <h3 class="font-semibold mb-2">List Item</h3>
-                    <p class="text-gray-600">Upload details and photos</p>
-                </div>
-                <div class="hidden md:block w-24 h-1 bg-[#8b5e3c]"></div>
-                <div class="step text-center mb-8 md:mb-0">
-                    <div
-                        class="w-20 h-20 rounded-full bg-[#8b5e3c] text-white flex items-center justify-center mx-auto mb-4">
-                        2</div>
-                    <h3 class="font-semibold mb-2">Get Verified</h3>
-                    <p class="text-gray-600">Expert authentication</p>
-                </div>
-                <div class="hidden md:block w-24 h-1 bg-[#8b5e3c]"></div>
-                <div class="step text-center">
-                    <div
-                        class="w-20 h-20 rounded-full bg-[#8b5e3c] text-white flex items-center justify-center mx-auto mb-4">
-                        3</div>
-                    <h3 class="font-semibold mb-2">Sell or Showcase</h3>
-                    <p class="text-gray-600">Trade or display items</p>
-                </div>
+<!-- How It Works Section -->
+<section class="py-20 bg-white animate-fade-in-up">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[#3e3e3e] animate-slide-up">How It Works</h2>
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-4xl mx-auto">
+            <div class="step text-center mb-8 md:mb-0 animate-fade-in-up">
+                <div class="w-12 h-12 mx-auto mb-2 bg-[#8b5e3c] text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                <h3 class="font-semibold mb-2">List Item</h3>
+                <p class="text-gray-600">Upload details and photos</p>
+            </div>
+            <div class="hidden md:block w-24 h-1 bg-[#8b5e3c]"></div>
+            <div class="step text-center mb-8 md:mb-0 animate-fade-in-up-delay">
+                <div class="w-12 h-12 mx-auto mb-2 bg-[#8b5e3c] text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                <h3 class="font-semibold mb-2">Get Verified</h3>
+                <p class="text-gray-600">Expert authentication</p>
+            </div>
+            <div class="hidden md:block w-24 h-1 bg-[#8b5e3c]"></div>
+            <div class="step text-center animate-fade-in-up-delay">
+                <div class="w-12 h-12 mx-auto mb-2 bg-[#8b5e3c] text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                <h3 class="font-semibold mb-2">Sell or Showcase</h3>
+                <p class="text-gray-600">Trade or display items</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-[#f4e7dc]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">What Our Collectors Say</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Collector"
-                            class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">John Mitchell</h4>
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"The verification process gives me complete peace of mind. Best platform
-                        for serious collectors."</p>
+<!-- Testimonials Section -->
+<section class="py-20 bg-[#f4e7dc] animate-fade-in-up">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[#3e3e3e] animate-slide-up">What Our Collectors Say</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in-up">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-user-circle text-2xl text-[#8b5e3c] mr-2"></i>
+                    <span class="font-semibold text-[#3e3e3e]">A. Sharma</span>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Collector"
-                            class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Sarah Parker</h4>
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"I've found rare pieces I couldn't find anywhere else. The community is
-                        fantastic!"</p>
+                <p class="text-gray-600">"The verification process gives me complete peace of mind. Best platform for collectors!"</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in-up-delay">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-user-circle text-2xl text-[#8b5e3c] mr-2"></i>
+                    <span class="font-semibold text-[#3e3e3e]">M. Khan</span>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Collector"
-                            class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">David Thompson</h4>
-                            <div class="flex text-yellow-400">
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"The smart collection management tools have revolutionized how I organize
-                        my items."</p>
+                <p class="text-gray-600">"I've found rare pieces I couldn't find anywhere else. The community is amazing!"</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg animate-fade-in-up-delay">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-user-circle text-2xl text-[#8b5e3c] mr-2"></i>
+                    <span class="font-semibold text-[#3e3e3e]">S. Patel</span>
                 </div>
+                <p class="text-gray-600">"The smart collection management tools have revolutionized how I organize my antiques."</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Final CTA Section -->
-    <section class="py-20 bg-[#8b5e3c] text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Start Your Collection Today</h2>
-            <p class="text-xl mb-8">Join thousands of collectors in the world's most trusted collectibles marketplace
-            </p>
-            <a href="/signup"
-                class="bg-white text-[#8b5e3c] px-8 py-3 rounded-lg hover:bg-gray-100 transition font-semibold inline-block">Create
-                Your Account</a>
-        </div>
-    </section>
+<!-- Final CTA Section -->
+<section class="py-20 bg-[#8b5e3c] text-white animate-fade-in-up">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-6">Start Your Collection Today</h2>
+        <p class="text-xl mb-8">Join thousands of collectors in the world's most trusted collectibles marketplace</p>
+        <a href="{% url 'register' %}"
+            class="bg-white text-[#8b5e3c] px-8 py-3 rounded-lg hover:bg-[#f4e7dc] transition font-semibold inline-block">Create Your Account</a>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-[#70452a] text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Collecti-Bells</h3>
-                    <p class="text-sm">Preserve, Passion, Profit</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        {% if user.is_authenticated %}
-                            <li><a href="{% url 'order_history' %}" class="hover:text-gray-300">My Orders</a></li>
-                        {% endif %}
-                        <li><a href="/about" class="hover:text-gray-300">About</a></li>
-                        <li><a href="/contact" class="hover:text-gray-300">Contact</a></li>
-                        <li><a href="/privacy" class="hover:text-gray-300">Privacy Policy</a></li>
-                        <li><a href="/faq" class="hover:text-gray-300">FAQs</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-gray-300"><i data-feather="facebook"></i></a>
-                        <a href="#" class="hover:text-gray-300"><i data-feather="twitter"></i></a>
-                        <a href="#" class="hover:text-gray-300"><i data-feather="instagram"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Newsletter</h4>
-                    <form class="flex">
-                        <input type="email" placeholder="Your email"
-                            class="px-4 py-2 rounded-l-lg text-gray-900 w-full">
-                        <button type="submit" class="bg-[#8b5e3c] px-4 rounded-r-lg hover:bg-[#70452a] transition">
-                            <i data-feather="send" class="w-4 h-4"></i>
-                        </button>
-                    </form>
+<!-- Footer -->
+<footer class="bg-[#70452a] text-white py-12 animate-fade-in">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Collecti-Bells</h3>
+                <p class="text-sm">Preserve, Passion, Profit</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'browse' %}" class="hover:text-[#f4e7dc] transition">Browse</a></li>
+                    <li><a href="{% url 'register' %}" class="hover:text-[#f4e7dc] transition">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}" class="hover:text-[#f4e7dc] transition">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-[#f4e7dc] transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-[#f4e7dc] transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-[#f4e7dc] transition"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="border-t border-[#8b5e3c] mt-8 pt-8 text-center text-sm">
-                <p>&copy; 2025 Collecti-Bells. All rights reserved.</p>
+            <div>
+                <h4 class="font-semibold mb-4">Newsletter</h4>
+                <form class="flex">
+                    <input type="email" placeholder="Your email" class="px-3 py-2 rounded-l bg-[#fdf6f0] text-[#3e3e3e] focus:outline-none">
+                    <button type="submit" class="bg-[#8b5e3c] text-white px-4 py-2 rounded-r hover:bg-[#70452a] transition">Subscribe</button>
+                </form>
             </div>
         </div>
-    </footer>
+        <div class="border-t border-[#8b5e3c] mt-8 pt-8 text-center text-sm">
+            <p>&copy; 2025 Collecti-Bells. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
 
-    <script>
-        feather.replace()
-    </script>
-</body>
-
-</html>
+{% block extra_js %}
+<style>
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fadeIn 0.8s ease-in-out; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+.animate-fade-in-up-delay { animation: fadeInUp 0.5s ease-out 0.2s both; }
+.animate-slide-up { animation: slideUp 0.7s ease-out; }
+.animate-slide-up-delay { animation: slideUp 0.7s ease-out 0.2s both; }
+</style>
 {% endblock %}

@@ -1,57 +1,51 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Order History</h1>
-
+<div class="container mx-auto px-4 py-8 animate-fade-in">
+    <h1 class="text-3xl font-bold text-[#3e3e3e] mb-6 animate-slide-up">Order History</h1>
+    
+    <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in-up">
         {% if orders %}
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-[#f4e7dc]">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Order ID
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Product
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Date
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Total
-                            </th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Order ID</th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Date</th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Item</th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Total</th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Status</th>
+                            <th class="px-6 py-3 text-left text-[#70452a] font-semibold">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="divide-y divide-[#f4e7dc]">
                         {% for order in orders %}
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{% url 'order_detail' order.id %}" 
-                                   class="text-blue-600 hover:text-blue-900">
-                                    #{{ order.id }}
-                                </a>
+                        <tr class="hover:bg-[#fdf6f0] transition-colors duration-200">
+                            <td class="px-6 py-4 text-[#3e3e3e] font-medium">#{{ order.id }}</td>
+                            <td class="px-6 py-4 text-[#3e3e3e]">{{ order.order_date|date:"M d, Y" }}</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    {% if order.product.image %}
+                                        <img src="{{ order.product.image.url }}" alt="{{ order.product.name }}" 
+                                             class="h-10 w-10 object-cover rounded mr-3">
+                                    {% endif %}
+                                    <span class="text-[#3e3e3e]">{{ order.product.name }}</span>
+                                </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ order.product.name }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                {{ order.order_date|date:"M d, Y" }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                    {% if order.status == 'completed' %}bg-green-100 text-green-800
-                                    {% elif order.status == 'cancelled' %}bg-red-100 text-red-800
-                                    {% else %}bg-yellow-100 text-yellow-800{% endif %}">
-                                    {{ order.status|title }}
+                            <td class="px-6 py-4 text-[#8b5e3c] font-semibold">${{ order.total_price }}</td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                                    Completed
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                ${{ order.total_price }}
+                            <td class="px-6 py-4">
+                                <a href="{% url 'order_detail' order.id %}" 
+                                   class="text-[#8b5e3c] hover:text-[#70452a] transition duration-200 flex items-center">
+                                    View Details
+                                    <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -59,11 +53,31 @@
                 </table>
             </div>
         {% else %}
-            <div class="text-center py-12 bg-white rounded-lg shadow-md">
-                <i class="fas fa-shopping-bag text-4xl text-gray-400 mb-4"></i>
-                <p class="text-gray-600">No orders found.</p>
+            <div class="py-16 text-center">
+                <svg class="mx-auto h-16 w-16 text-[#8b5e3c]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <h3 class="mt-4 text-lg font-medium text-[#3e3e3e]">No Orders Yet</h3>
+                <p class="mt-1 text-[#70452a]/80">You haven't placed any orders yet.</p>
+                <div class="mt-6">
+                    <a href="{% url 'browse' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#8b5e3c] hover:bg-[#70452a]">
+                        Browse Products
+                    </a>
+                </div>
             </div>
         {% endif %}
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-fade-in { animation: fadeIn 0.8s ease-in-out; }
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+.animate-slide-up { animation: slideUp 0.7s ease-out; }
+</style>
 {% endblock %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,10 +11,17 @@
       {% endblock %}
     </title>
   </head>
-  <body>
-    {% include 'navbar.html' %}
-    {% block content %}
+  <body class="bg-[#fdf6f0] relative" style="min-height:100vh;">
+    <!-- Subtle antique pattern background -->
+    <div aria-hidden="true" class="fixed inset-0 w-full h-full z-0 pointer-events-none" style="background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" fill="%23fdf6f0"/><circle cx="30" cy="30" r="28" stroke="%238b5e3c" stroke-width="1.5" fill="none" opacity="0.08"/><path d="M30 10 L34 20 L46 22 L36 30 L40 42 L30 36 L20 42 L24 30 L14 22 L26 20 Z" fill="none" stroke="%2370452a" stroke-width="1" opacity="0.10"/></svg>'); background-repeat: repeat; background-size: 120px 120px; opacity: 0.5;"></div>
+    <div class="relative z-10">
+        {% include 'navbar.html' %}
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
+    </div>
+    {% block script %}
+    
+    {% endblock script %}
   </body>
 </html>

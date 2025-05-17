@@ -19,16 +19,15 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('', views.home_view, name='home'),
     path('', include('authentication.urls'), name='auth'),
     path('', include('product.urls'), name='auth'),
     path('landing/', TemplateView.as_view(template_name='landing.html'), name='landing'), 
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
-    path('browse/', TemplateView.as_view(template_name='browse.html'), name='browse'),
-    path('layout/', TemplateView.as_view(template_name='layout.html'), name='layout'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),      
     path('productDetails/', TemplateView.as_view(template_name='productDetails.html'), name='productDetails'),
     path('footer/', TemplateView.as_view(template_name='footer.html'), name='footer')

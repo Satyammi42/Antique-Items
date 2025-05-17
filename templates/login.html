@@ -3,55 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<<<<<<< HEAD
-  <title>Login |Collecti-Bells</title>
-=======
-  <title>Login | Antique-Items</title>
->>>>>>> 574b4be836085696aabf1027e65d28df079fa32b
+  <title>Login | Collecti-Bells</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom animation definitions */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    /* Background pattern for antique theme */
+    .bg-pattern {
+      background-color: #fdf6f0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b5e3c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    .animate-fade-in { animation: fadeIn 0.8s ease-in-out; }
+    .animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+  </style>
 </head>
-<body class="min-h-screen bg-cover bg-center flex items-center justify-center"
-      style="background-image: url('https://images.unsplash.com/photo-1443884590026-2e4d21aee71c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW50aXF1ZXN8ZW58MHx8MHx8fDA%3D');">
+<body class="bg-pattern min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md px-4">
+    <!-- Login Card -->
+    <div class="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up">
+      <h1 class="text-4xl font-bold text-center text-[#8b5e3c] mb-3">Collecti-Bells</h1>
+      <p class="text-center text-[#70452a] mb-6">Login to manage your collection</p>
 
-  <div class="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-2xl shadow-lg w-full max-w-md">
-    <h1 class="text-4xl font-extrabold text-center text-indigo-600 mb-6">Collecti-Bells</h1>
-    <p class="text-center text-gray-600 mb-6">Login to manage your datasets</p>
+      <!-- Display messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="{% if message.tags == 'error' %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %} p-3 rounded-md mb-4">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
 
-    <!-- Display messages -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="{% if message.tags == 'error' %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %} p-3 rounded-md mb-4">
-          {{ message }}
+      <!-- Login Form -->
+      <form method="post" action="{% url 'login' %}" class="space-y-4">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+          <label for="id_username" class="block text-sm font-medium text-[#70452a] mb-1">Username</label>
+          <input type="text" name="username" id="id_username" required
+                 class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50">
         </div>
-      {% endfor %}
-    {% endif %}
-
-    <!-- Login Form -->
-    <form method="post" action="{% url 'login' %}" class="space-y-4">
-      {% csrf_token %}
-      {% for field in form %}
-        <div class="mb-3">
-          <label class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
-          {{ field }}
-          {% if field.errors %}
-            <div class="text-red-500 text-sm mt-1">
-              {% for error in field.errors %}
-                <p>{{ error }}</p>
-              {% endfor %}
-            </div>
-          {% endif %}
+        
+        <div class="mb-4">
+          <label for="id_password" class="block text-sm font-medium text-[#70452a] mb-1">Password</label>
+          <input type="password" name="password" id="id_password" required
+                 class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50">
         </div>
-      {% endfor %}
 
-      <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
-        Log In
-      </button>
-    </form>
+        <button type="submit" 
+                class="w-full py-2.5 px-4 bg-[#8b5e3c] text-white rounded-lg hover:bg-[#70452a] transition duration-200">
+          Log In
+        </button>
+      </form>
 
-    <p class="mt-4 text-center text-sm text-gray-600">
-      Don't have an account?
-      <a href="{% url 'register' %}" class="text-blue-600 hover:text-blue-800">Register here</a>
-    </p>
+      <p class="mt-4 text-center text-sm text-[#70452a]">
+        Don't have an account?
+        <a href="{% url 'register' %}" class="text-[#8b5e3c] hover:text-[#70452a] transition duration-200">Register here</a>
+      </p>
+    </div>
   </div>
 </body>
 </html>

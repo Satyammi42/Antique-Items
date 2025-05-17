@@ -1,32 +1,33 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <!-- Hero Section with Background -->
-    <div class="relative mb-16 bg-gradient-to-r from-blue-700 to-indigo-800 rounded-xl overflow-hidden">
-        <div class="absolute inset-0 opacity-20" style="background-image: url('https://images.unsplash.com/photo-1584656197034-84db8e2dc927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;"></div>
+<div class="container mx-auto px-4 py-8 animate-fade-in">
+    <!-- Hero Section with Updated Color Theme -->
+    <div class="relative mb-16 bg-gradient-to-r from-[#70452a] to-[#8b5e3c] rounded-xl overflow-hidden shadow-lg transform transition-all duration-700 hover:shadow-2xl">
+        <div class="absolute inset-0 opacity-20 transition-opacity duration-700" 
+             style="background-image: url('https://images.unsplash.com/photo-1584656197034-84db8e2dc927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;"></div>
         <div class="relative px-8 py-16 text-center">
-            <h1 class="text-5xl font-bold mb-4 text-white">Discover Timeless Treasures</h1>
-            <p class="text-xl text-white/80 max-w-2xl mx-auto">Explore our curated collection of unique antique items from around the world</p>
+            <h1 class="text-5xl font-bold mb-4 text-white animate-slide-up">Discover Timeless Treasures</h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto animate-slide-up-delay">Explore our curated collection of unique antique items from around the world</p>
         </div>
     </div>
 
-    <!-- Enhanced Filter Panel -->
-    <div class="bg-white rounded-xl shadow-md p-6 mb-10">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800">Filter Collection</h2>
+    <!-- Enhanced Filter Panel with Theme Colors -->
+    <div class="bg-white rounded-xl shadow-md p-6 mb-10 transform transition-all duration-300 hover:shadow-lg animate-fade-in-up">
+        <h2 class="text-xl font-semibold mb-4 text-[#3e3e3e]">Filter Collection</h2>
         <form method="get" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <!-- Search Bar -->
                 <div class="md:col-span-4">
-                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search Items</label>
+                    <label for="search" class="block text-sm font-medium text-[#70452a] mb-1">Search Items</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <svg class="h-5 w-5 text-[#8b5e3c]/60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
                         </div>
                         <input type="text" name="search" id="search"
-                               class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                               class="pl-10 w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50" 
                                placeholder="Search by name or description..." 
                                value="{{ search_query }}">
                     </div>
@@ -34,9 +35,9 @@
 
                 <!-- Category Dropdown -->
                 <div class="md:col-span-3">
-                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                    <label for="category" class="block text-sm font-medium text-[#70452a] mb-1">Category</label>
                     <select name="category" id="category"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            class="w-full px-4 py-2 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] bg-[#fdf6f0]/50">
                         <option value="">All Categories</option>
                         {% for category in categories %}
                         <option value="{{ category.id }}" 
@@ -49,18 +50,18 @@
 
                 <!-- Price Range Slider -->
                 <div class="md:col-span-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
+                    <label class="block text-sm font-medium text-[#70452a] mb-3">Price Range</label>
                     <div class="px-2">
                         <!-- Price display -->
                         <div class="flex justify-between mb-2">
-                            <div class="text-blue-600 font-medium" id="minPriceLabel">${{ min_price|default:0 }}</div>
-                            <div class="text-blue-600 font-medium" id="maxPriceLabel">${{ max_price|default:1000 }}</div>
+                            <div class="text-[#8b5e3c] font-medium" id="minPriceLabel">${{ min_price|default:0 }}</div>
+                            <div class="text-[#8b5e3c] font-medium" id="maxPriceLabel">${{ max_price|default:1000 }}</div>
                         </div>
                         
                         <!-- Slider container -->
                         <div class="relative mb-5 mt-4">
-                            <div class="h-1 bg-gray-200 rounded-full"></div>
-                            <div id="price-range-selected" class="absolute h-1 bg-blue-500 top-0"></div>
+                            <div class="h-1 bg-[#f4e7dc] rounded-full"></div>
+                            <div id="price-range-selected" class="absolute h-1 bg-[#8b5e3c] top-0"></div>
                             
                             <input type="range" id="minPrice" 
                                    class="absolute top-0 h-1 w-full opacity-0 cursor-pointer" 
@@ -73,8 +74,8 @@
                                    value="{{ max_price|default:1000 }}">
                             
                             <!-- Slider thumbs -->
-                            <div id="minPriceThumb" class="absolute w-5 h-5 bg-blue-600 rounded-full -mt-2 -ml-2.5 shadow-md transform -translate-y-0.5 cursor-grab transition-transform hover:scale-110"></div>
-                            <div id="maxPriceThumb" class="absolute w-5 h-5 bg-blue-600 rounded-full -mt-2 -ml-2.5 shadow-md transform -translate-y-0.5 cursor-grab transition-transform hover:scale-110"></div>
+                            <div id="minPriceThumb" class="absolute w-5 h-5 bg-[#8b5e3c] rounded-full -mt-2 -ml-2.5 shadow-md transform -translate-y-0.5 cursor-grab transition-transform hover:scale-110"></div>
+                            <div id="maxPriceThumb" class="absolute w-5 h-5 bg-[#8b5e3c] rounded-full -mt-2 -ml-2.5 shadow-md transform -translate-y-0.5 cursor-grab transition-transform hover:scale-110"></div>
                         </div>
                         
                         <!-- Hidden inputs to store actual values -->
@@ -86,7 +87,7 @@
                 <!-- Apply Filters & Reset -->
                 <div class="md:col-span-1 flex items-end">
                     <button type="submit" 
-                            class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-300 shadow-md">
+                            class="w-full px-4 py-2 bg-[#8b5e3c] hover:bg-[#70452a] text-white rounded-lg transition duration-300 shadow-md">
                         Apply
                     </button>
                 </div>
@@ -94,8 +95,8 @@
             
             <!-- Reset Link -->
             <div class="text-right">
-                <a href="{% url 'product_list' %}" 
-                   class="inline-flex items-center text-blue-600 hover:text-blue-800 transition duration-200">
+                <a href="{% url 'browse' %}" 
+                   class="inline-flex items-center text-[#8b5e3c] hover:text-[#70452a] transition duration-200">
                     <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
                     </svg>
@@ -105,15 +106,15 @@
         </form>
     </div>
 
-    <!-- Results Count -->
-    <div class="flex justify-between items-center mb-6">
-        <p class="text-gray-600">Showing <span class="font-semibold">{{ products.start_index }}</span> to <span class="font-semibold">{{ products.end_index }}</span> of <span class="font-semibold">{{ products.paginator.count }}</span> items</p>
+    <!-- Results Count with Theme Colors -->
+    <div class="flex justify-between items-center mb-6 animate-fade-in-up-delay">
+        <p class="text-[#3e3e3e]">Showing <span class="font-semibold">{{ products.start_index }}</span> to <span class="font-semibold">{{ products.end_index }}</span> of <span class="font-semibold">{{ products.paginator.count }}</span> items</p>
         
         <!-- Sort Options -->
         <div class="flex items-center">
-            <span class="mr-2 text-gray-600">Sort by:</span>
+            <span class="mr-2 text-[#3e3e3e]">Sort by:</span>
             <select name="ordering" onchange="this.form.submit()" form="sortForm"
-                    class="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                    class="px-3 py-1 border border-[#8b5e3c]/30 rounded-lg focus:ring-2 focus:ring-[#8b5e3c] focus:border-[#8b5e3c] text-sm bg-[#fdf6f0]/50">
                 <option value="-created_at" {% if ordering == '-created_at' %}selected{% endif %}>Newest</option>
                 <option value="price" {% if ordering == 'price' %}selected{% endif %}>Price: Low to High</option>
                 <option value="-price" {% if ordering == '-price' %}selected{% endif %}>Price: High to Low</option>
@@ -129,16 +130,16 @@
         </form>
     </div>
 
-    <!-- Enhanced Products Grid -->
+    <!-- Product Cards with Theme Colors -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for product in products %}
-        <div class="group">
+        <div class="group animate-fade-in-up" style="animation-delay: calc({{ forloop.counter0 }} * 100ms)">
             <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2">
                 {% if product.image %}
                 <div class="relative overflow-hidden h-56">
                     <img src="{{ product.image.url }}" 
                          alt="{{ product.name }}" 
-                         class="object-cover w-full h-full transition duration-300 group-hover:scale-105">
+                         class="object-cover w-full h-full transition duration-500 group-hover:scale-110">
                     {% if product.stock <= 0 %}
                     <div class="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 text-sm font-semibold">SOLD OUT</div>
                     {% endif %}
@@ -146,15 +147,15 @@
                 {% endif %}
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-3">
-                        <h5 class="text-xl font-semibold mb-1 text-gray-800">{{ product.name }}</h5>
-                        <span class="text-2xl font-bold text-blue-600">${{ product.price }}</span>
+                        <h5 class="text-xl font-semibold mb-1 text-[#3e3e3e]">{{ product.name }}</h5>
+                        <span class="text-2xl font-bold text-[#8b5e3c]">${{ product.price }}</span>
                     </div>
                     <p class="text-gray-600 mb-4 line-clamp-2">{{ product.description|truncatechars:100 }}</p>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">
                             {% if product.stock > 0 %}
                             <span class="inline-flex items-center">
-                                <span class="h-2 w-2 bg-green-500 rounded-full mr-1"></span>
+                                <span class="h-2 w-2 bg-green-500 rounded-full mr-1 animate-pulse"></span>
                                 In Stock ({{ product.stock }})
                             </span>
                             {% else %}
@@ -165,9 +166,9 @@
                             {% endif %}
                         </span>
                         <a href="{% url 'product_detail' product.id %}" 
-                           class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                           class="inline-flex items-center px-4 py-2 bg-[#8b5e3c] text-white rounded-lg hover:bg-[#70452a] transition-all duration-300 hover:shadow-md transform hover:scale-105">
                            View Details
-                           <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                           <svg class="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                            </svg>
                         </a>
@@ -176,15 +177,16 @@
             </div>
         </div>
         {% empty %}
-        <div class="col-span-full py-16 text-center">
-            <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Empty state with theme colors -->
+        <div class="col-span-full py-16 text-center animate-fade-in">
+            <svg class="mx-auto h-16 w-16 text-[#8b5e3c]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.071 13.071L13.414 18.728a2 2 0 01-2.828 0l-5.657-5.657a2 2 0 010-2.828l5.657-5.657a2 2 0 012.828 0L19.07 10.243a2 2 0 010 2.828z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.6 7.6l-.8.8m-2.4 2.4l-.8.8" />
             </svg>
-            <h3 class="mt-4 text-lg font-medium text-gray-900">No items found</h3>
-            <p class="mt-1 text-gray-500">Try adjusting your search or filter criteria.</p>
+            <h3 class="mt-4 text-lg font-medium text-[#3e3e3e]">No items found</h3>
+            <p class="mt-1 text-[#70452a]/80">Try adjusting your search or filter criteria.</p>
             <div class="mt-6">
-                <a href="{% url 'product_list' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                <a href="{% url 'browse' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#8b5e3c] hover:bg-[#70452a]">
                     Reset All Filters
                 </a>
             </div>
@@ -192,15 +194,15 @@
         {% endfor %}
     </div>
 
-    <!-- Improved Pagination -->
+    <!-- Pagination with Theme Colors -->
     {% if products.has_other_pages %}
-    <div class="mt-12">
+    <div class="mt-12 animate-fade-in-up-delay-2">
         <nav class="flex justify-center">
             <ul class="inline-flex space-x-1">
                 {% if products.has_previous %}
                 <li>
                     <a href="?page={{ products.previous_page_number }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}&ordering={{ ordering }}" 
-                       class="px-3 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition duration-200">
+                       class="px-3 py-2 rounded-md border border-[#8b5e3c]/30 text-[#70452a] hover:bg-[#f4e7dc] transition duration-200">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -211,14 +213,14 @@
                 {% for num in products.paginator.page_range %}
                     {% if products.number == num %}
                         <li>
-                            <span class="px-4 py-2 rounded-md bg-blue-600 text-white font-medium">
+                            <span class="px-4 py-2 rounded-md bg-[#8b5e3c] text-white font-medium">
                                 {{ num }}
                             </span>
                         </li>
                     {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
                         <li>
                             <a href="?page={{ num }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}&ordering={{ ordering }}" 
-                               class="px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition duration-200">
+                               class="px-4 py-2 rounded-md border border-[#8b5e3c]/30 text-[#70452a] hover:bg-[#f4e7dc] transition duration-200">
                                 {{ num }}
                             </a>
                         </li>
@@ -228,7 +230,7 @@
                 {% if products.has_next %}
                 <li>
                     <a href="?page={{ products.next_page_number }}&search={{ search_query }}&category={{ category_filter }}&min_price={{ min_price }}&max_price={{ max_price }}&ordering={{ ordering }}" 
-                       class="px-3 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 transition duration-200">
+                       class="px-3 py-2 rounded-md border border-[#8b5e3c]/30 text-[#70452a] hover:bg-[#f4e7dc] transition duration-200">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -242,7 +244,8 @@
 </div>
 {% endblock %}
 
-{% block extra_js %}
+{% block script %}
+<!-- Original price range slider script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get elements
@@ -264,19 +267,40 @@ document.addEventListener('DOMContentLoaded', function() {
         const minPercent = (parseInt(minPriceInput.value) / max) * 100;
         const maxPercent = (parseInt(maxPriceInput.value) / max) * 100;
         
-        // Position the thumbs
+        // Position the thumbs with smooth transition
         minPriceThumb.style.left = `${minPercent}%`;
         maxPriceThumb.style.left = `${maxPercent}%`;
         
-        // Update the selected range
+        // Update the selected range with smooth transition
         selectedRange.style.left = `${minPercent}%`;
         selectedRange.style.width = `${maxPercent - minPercent}%`;
         
-        // Update labels and hidden inputs
-        minPriceLabel.textContent = `$${minPriceInput.value}`;
-        maxPriceLabel.textContent = `$${maxPriceInput.value}`;
+        // Update labels and hidden inputs with number animation
+        animateNumberChange(minPriceLabel, parseInt(minPriceLabel.textContent.replace('$', '')), parseInt(minPriceInput.value));
+        animateNumberChange(maxPriceLabel, parseInt(maxPriceLabel.textContent.replace('$', '')), parseInt(maxPriceInput.value));
         hiddenMinInput.value = minPriceInput.value;
         hiddenMaxInput.value = maxPriceInput.value;
+    }
+    
+    // Animate number changes for price labels
+    function animateNumberChange(element, startValue, endValue) {
+        const duration = 300;
+        const startTime = performance.now();
+        
+        function updateNumber(currentTime) {
+            const elapsedTime = currentTime - startTime;
+            
+            if (elapsedTime < duration) {
+                const progress = elapsedTime / duration;
+                const currentValue = Math.floor(startValue + (endValue - startValue) * progress);
+                element.textContent = `$${currentValue}`;
+                requestAnimationFrame(updateNumber);
+            } else {
+                element.textContent = `$${endValue}`;
+            }
+        }
+        
+        requestAnimationFrame(updateNumber);
     }
     
     // Initialize
@@ -298,6 +322,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         updateThumbPositions();
     });
+    
+    // Add scale animation to thumbs on drag
+    [minPriceThumb, maxPriceThumb].forEach(thumb => {
+        thumb.addEventListener('mousedown', function() {
+            this.classList.add('scale-125');
+        });
+    });
+    
+    document.addEventListener('mouseup', function() {
+        [minPriceThumb, maxPriceThumb].forEach(thumb => {
+            thumb.classList.remove('scale-125');
+        });
+    });
 });
 </script>
+
+<!-- Add global CSS animations -->
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.animate-fade-in-up-delay {
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.animate-fade-in-up-delay-2 {
+    animation: fadeInUp 0.5s ease-out 0.4s both;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.7s ease-out;
+}
+
+.animate-slide-up-delay {
+    animation: slideUp 0.7s ease-out 0.2s both;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, select, input {
+    transition: all 0.3s ease;
+}
+</style>
 {% endblock %}

@@ -88,9 +88,10 @@ def checkout(request, product_id):
     return render(request, 'checkout.html', context)
 
 def order_history(request):
+    # Get orders for the current user if implemented
     orders = Order.objects.all().order_by('-order_date')
-    return render(request, 'orders/order_history.html', {'orders': orders})
+    return render(request, 'order_history.html', {'orders': orders})
 
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
-    return render(request, 'orders/order_detail.html', {'order': order})
+    return render(request, 'order_detail.html', {'order': order})
