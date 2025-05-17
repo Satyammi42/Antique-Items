@@ -12,11 +12,19 @@
         <a class="mr-5 hover:text-gray-900">Third Link</a>
         <a class="mr-5 hover:text-gray-900">Fourth Link</a>
       </nav>
-      <button class="inline-flex items-center bg-gray-400 border-0 py-1 px-3 mr-5 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-        <a href="">Sign Up</a>
-      </button>
-      <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-        <a href="">Login</a>
-      </button>
+      
+      {% if user.is_authenticated %}
+        <span class="mr-4 text-gray-700">Welcome, {{ user.username }}!</span>
+        <button class="inline-flex items-center bg-red-500 text-white border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0">
+          <a href="{% url 'logout' %}/">Logout</a>
+        </button>
+      {% else %}
+        <button class="inline-flex items-center bg-gray-400 border-0 py-1 px-3 mr-5 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+          <a href="{% url 'register' %}/">Sign Up</a>
+        </button>
+        <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+          <a href="{% url 'login' %}/">Login</a>
+        </button>
+      {% endif %}
     </div>
   </header>
